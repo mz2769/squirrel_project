@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Squirrel(models.Model):
     latitude = models.DecimalField(max_digits = 13, decimal_places = 2)
     longitude = models.DecimalField(max_digits = 13, decimal_places = 2)

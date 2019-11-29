@@ -18,4 +18,5 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sightings/add/',views.SquirrelAdd.as_view(),name='sighting_add'),
 ]
