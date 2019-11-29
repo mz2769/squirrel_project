@@ -41,4 +41,4 @@ class Command(BaseCommand):
                 except:
                     pass
                 squirrel.save()
-                self.stdout.write('successfully import ')
+                # self.stdout.write('successfully import ')

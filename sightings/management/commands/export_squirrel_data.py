@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import csv
 from sightings.models import Squirrel
-from django.utils import encoding
+
 
 class Command(BaseCommand):
     help = ("Output the specified model as CSV")
