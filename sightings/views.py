@@ -1,32 +1,35 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views import generic
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from django.shortcuts import render, get_object_or_404
+from .forms import SquirrelForm
 from sightings.models import Squirrel
+from django.contrib import messages
 
 def list_sq(request):
     squirrels = Squirrel.objects.all()
     return render(request, 'sightings/list_sq.html', {'squirrels': squirrels})
 
+def update(request,unique_squirrel_id):
+    obj= get_object_or_404(Squirrel, pk=unique_squirrel_id)
+    form = SquirrelForm(request.POST, instance= obj)
+    context= {'form': form}
+    if form.is_valid():
+        obj= form.save(commit= False)
+        obj.save()
+        messages.success(request, "You successfully updated the squirrel")
+        context= {'form': form}
+        return render(request,'sightings/update.html' , context)
+    else:
+        form = SquirrelForm(instance= obj)
+        context= {'form': form}
+        return render(request,'sightings/update.html' , context)
 
-
-
-
-# class squirrellist(generic.ListView):
-#     model = Squirrel
-#     template_name = 'squirrel/sightings.html'
-
-
-# def update_sightings(request,pk):
-#     sighting = Squirrel.objects.get(pk=unique_squirrel_id)
-#     if request.method == 'POST':
-#         form = SquirrelForm(request.POST, instance=sighting)
-#         if sighting.is_valid():
-#
-            # form.save()
-
-
-# class SquirrelAdd(CreateView):
-#     model = Squirrel
-#     fields = '__all__'
+def create(request):
+    form = SquirrelForm()
+    if form.is_valid():
+        obj= form.save(commit= False)
+        obj.save()
+        messages.success(request, "You successfully added the squirrel")
+        return render(request, 'sightings/create.html', {'form': form})
+    else:
+        context= {'form': form,
+                  'error': 'The form was not updated successfully. Please enter in valid info'}
+        return render(request,'sightings/create.html' , context)

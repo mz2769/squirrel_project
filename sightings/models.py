@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Squirrel(models.Model):
-    latitude = models.FloatField()
     longitude = models.FloatField()
+    latitude = models.FloatField()
     unique_squirrel_id = models.CharField(
         max_length=200,
         unique=True,
@@ -37,7 +37,10 @@ class Squirrel(models.Model):
         max_length=20,
         choices=AGE_CHOICES,
         default=None,
+        blank=True,
+        null=True,
     )
+
     Gray = 'Gray'
     Cinnamon = 'Cinnamon'
     Black = 'Black'
@@ -50,6 +53,8 @@ class Squirrel(models.Model):
         max_length=20,
         choices=COLOR_CHOICES,
         default=None,
+        blank=True,
+        null=True,
     )
 
     A = 'Ground Plane'
@@ -62,9 +67,11 @@ class Squirrel(models.Model):
         max_length=40,
         choices=LOCATION_CHOICES,
         default=None,
+        blank=True,
+        null=True,
     )
 
-    specific_location = models.CharField(max_length=200,default=None)
+    specific_location = models.CharField(max_length=200,default=None,blank=True,null=True)
 
     T = 'TRUE'
     F = 'FALSE'
@@ -100,7 +107,7 @@ class Squirrel(models.Model):
         choices=SELECTION_CHOICE,
         default=T,
     )
-    other_activities = models.CharField(max_length=200,default=None)
+    other_activities = models.CharField(max_length=200,default=None,blank=True,null=True)
 
     kuks = models.CharField(
         max_length=20,

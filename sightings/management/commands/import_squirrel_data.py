@@ -37,7 +37,6 @@ class Command(BaseCommand):
                     squirrel.approaches = row[26]
                     squirrel.indifferent = row[27]
                     squirrel.runs_from = row[28]
-
                 except:
                     pass
                 squirrel.save()
