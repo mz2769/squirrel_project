@@ -22,7 +22,7 @@ class Squirrel(models.Model):
     shift = models.CharField(
         max_length=2,
         choices=OCCUR_TIME_CHOICES,
-        default=Morning,
+        default=None,
     )
 
     date = models.DateField()
@@ -82,70 +82,70 @@ class Squirrel(models.Model):
     running = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
 
     chasing = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
 
     climbing = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
 
     eating = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     foraging = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     other_activities = models.CharField(max_length=200,default=None,blank=True,null=True)
 
     kuks = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     quaas = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     moans = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     tail_flags = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     tail_twitches = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     approaches = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     indifferent = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
     runs_from = models.CharField(
         max_length=20,
         choices=SELECTION_CHOICE,
-        default=T,
+        default=None,
     )
