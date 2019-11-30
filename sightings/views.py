@@ -7,6 +7,18 @@ def list_sq(request):
     squirrels = Squirrel.objects.all()
     return render(request, 'sightings/list_sq.html', {'squirrels': squirrels})
 
+def create(request):
+    form = SquirrelForm()
+    if form.is_valid():
+        obj= form.save(commit= False)
+        obj.save()
+        messages.success(request, "You successfully added the squirrel")
+        return render(request, 'sightings/create.html', {'form': form})
+    else:
+        context= {'form': form,
+                  'error': 'The form was not updated successfully. Please enter in valid info'}
+        return render(request,'sightings/create.html' , context)
+
 def update(request,unique_squirrel_id):
     obj= get_object_or_404(Squirrel, pk=unique_squirrel_id)
     form = SquirrelForm(request.POST, instance= obj)
@@ -21,15 +33,3 @@ def update(request,unique_squirrel_id):
         form = SquirrelForm(instance= obj)
         context= {'form': form}
         return render(request,'sightings/update.html' , context)
-
-def create(request):
-    form = SquirrelForm()
-    if form.is_valid():
-        obj= form.save(commit= False)
-        obj.save()
-        messages.success(request, "You successfully added the squirrel")
-        return render(request, 'sightings/create.html', {'form': form})
-    else:
-        context= {'form': form,
-                  'error': 'The form was not updated successfully. Please enter in valid info'}
-        return render(request,'sightings/create.html' , context)
