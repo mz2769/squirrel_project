@@ -10,20 +10,13 @@ class Squirrel(models.Model):
         primary_key=True,
     )
 
-    def __str__(self):
-        return self.unique_squirrel_id
-
     Morning = 'AM'
     Afternoon = 'PM'
     OCCUR_TIME_CHOICES = [
         (Morning,'AM'),
         (Afternoon,'PM'),
     ]
-    shift = models.CharField(
-        max_length=2,
-        choices=OCCUR_TIME_CHOICES,
-        default=None,
-    )
+    shift = models.CharField(max_length=2,choices=OCCUR_TIME_CHOICES)
 
     date = models.DateField()
 
@@ -79,73 +72,22 @@ class Squirrel(models.Model):
         (T,'TRUE'),
         (F,'FALSE'),
     ]
-    running = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
+    running = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    chasing = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    climbing = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    eating = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    foraging = models.CharField(max_length=20,choices=SELECTION_CHOICE)
 
-    chasing = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-
-    climbing = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-
-    eating = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-    foraging = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
     other_activities = models.CharField(max_length=200,default=None,blank=True,null=True)
 
-    kuks = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-    quaas = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-    moans = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-    tail_flags = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-    tail_twitches = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-    approaches = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-    indifferent = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
-    runs_from = models.CharField(
-        max_length=20,
-        choices=SELECTION_CHOICE,
-        default=None,
-    )
+    kuks = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    quaas = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    moans = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    tail_flags = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    tail_twitches = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    approaches = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    indifferent = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    runs_from = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+
+    def __str__(self):
+        return self.unique_squirrel_id
