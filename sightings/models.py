@@ -10,6 +10,7 @@ class Squirrel(models.Model):
         primary_key=True,
     )
 
+    
     Morning = 'AM'
     Afternoon = 'PM'
     OCCUR_TIME_CHOICES = [
