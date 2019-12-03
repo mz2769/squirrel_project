@@ -41,3 +41,8 @@ def update(request,unique_squirrel_id):
     else:
         form = SquirrelForm(instance= obj)
         return render(request,'sightings/update.html' , {'form': form})
+
+def delete(request,unique_squirrel_id):
+    obj= get_object_or_404(Squirrel, pk=unique_squirrel_id)
+    obj.delete()
+    return HttpResposne("You have successfully deleted the squirrel sighting")
