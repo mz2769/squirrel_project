@@ -44,5 +44,15 @@ def update(request,unique_squirrel_id):
 
 def delete(request,unique_squirrel_id):
     obj= get_object_or_404(Squirrel, pk=unique_squirrel_id)
-    obj.delete()
-    return HttpResposne("You have successfully deleted the squirrel sighting")
+    if request.method == 'DELETE':
+        form = SquirrelForm(request.POST, instance= obj)
+        context= {'form': form}
+        if form.is_valid():
+            obj.delete()
+            messages.success(request, "You have successfully deleted the squirrel sighting")
+            context= {'form': form}
+            return HttpResponseRedirect("/sightings/")
+
+    else:
+        form = SquirrelForm(instance= obj)
+        return render(request,'sightings/delete.html' , {'form': form})
