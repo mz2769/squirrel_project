@@ -44,19 +44,5 @@ def update(request,unique_squirrel_id):
 
 def delete(request,unique_squirrel_id):
     obj= get_object_or_404(Squirrel, pk=unique_squirrel_id)
-    if request.method == 'DELETE':
-        form = SquirrelForm(request.DELETE, instance= obj)
-        context= {'form': form}
-        if form.is_valid():
-            obj= form.save(commit= False)
-            obj.save()
-            messages.success(request, "You have successfully deleted the squirrel sighting")
-            context= {'form': form}
-            return render(request,'sightings/delete.html' , context)
-        else:
-            context= {'form': form,
-                          'error': 'The form was not deleted successfully. Please enter in valid info'}
-            return render(request,'sightings/create.html' , context)
-    else:
-        form = SquirrelForm(instance= obj)
-        return render(request,'sightings/delete.html' , {'form': form})
+    obj.delete()
+    return HttpResposne("You have successfully deleted the squirrel sighting")
