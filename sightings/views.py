@@ -37,7 +37,7 @@ def update(request,unique_squirrel_id):
         else:
             context= {'form': form,
                       'error': 'The form was not updated successfully. Please enter in valid info'}
-            return render(request,'sightings/create.html' , context)
+            return render(request,'sightings/update.html' , context)
     else:
         form = SquirrelForm(instance= obj)
         return render(request,'sightings/update.html' , {'form': form})
