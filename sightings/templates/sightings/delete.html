@@ -15,10 +15,12 @@
 </ul>
 {% endif %}
 
+<a href="/sightings/"><input type="submit" value="go back to list"/></a>
+
 <form action="" method="DELETE">
 {% csrf_token %}
 {{ form.as_p }}
-<input type="submit" value="Delete Squirrel"/>
+<a href=""><input type="submit" onclick="return confirm('Are you sure?')" value="Delete Squirrel"></a>
 </form>
 <br/><br/>
 
