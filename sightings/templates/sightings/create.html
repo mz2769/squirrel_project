@@ -23,7 +23,7 @@
 <form action="" method="POST">
 {% csrf_token %}
 {{ form.as_p }}
-<input type="submit" value="Add Squirrel"/>
+<a href=""><input type="submit" onclick="return confirm('Are you sure?')" value="Add Squirrel"></a>
 </form>
 <br/><br/>
 
