@@ -8,7 +8,7 @@ def list_sq(request):
     return render(request, 'sightings/list_sq.html', {'squirrels': squirrels})
 
 def map(request):
-    sightings = Squirrel.objects.all()[:100]
+    sightings = Squirrel.objects.all()[0:100]
     return render(request, 'sightings/map.html', {'sightings': sightings})
 
 def create(request):
