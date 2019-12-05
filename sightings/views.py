@@ -8,8 +8,8 @@ def list_sq(request):
     return render(request, 'sightings/list_sq.html', {'squirrels': squirrels})
 
 def map(request):
-    squirrels = Squirrel.objects.all()
-    return render(request, 'sightings/map.html', {'squirrels': squirrels})
+    sightings = Squirrel.objects.all()
+    return render(request, 'sightings/map.html', {'sightings': sightings})
 
 def create(request):
     if request.method == 'POST':
@@ -45,3 +45,6 @@ def update(request,unique_squirrel_id):
     else:
         form = SquirrelForm(instance= obj)
         return render(request,'sightings/update.html' , {'form': form})
+
+def stats(request):
+    squirrels = Squirrel.objects.all()

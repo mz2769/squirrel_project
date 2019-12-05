@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Squirrel</title>
+</head>
+
+<body>
+<h1>Squirrel Stats</h1>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<a href="/sightings/"><input type="submit" value="go back to list"/></a>
+
+<form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+</form>
+<br/><br/>
+
+
+
+</body>
+
+</html>
