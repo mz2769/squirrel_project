@@ -4,8 +4,7 @@
 </head>
 
 <body>
-<h1>Delete Squirrel</h1>
-
+<h1>Squirrel Stats</h1>
 
 {% if messages %}
 <ul class="messages">
@@ -15,12 +14,14 @@
 </ul>
 {% endif %}
 
-<form action="" method="DELETE">
+<a href="/sightings/"><input type="submit" value="go back to list"/></a>
+
+<form action="" method="POST">
 {% csrf_token %}
 {{ form.as_p }}
-<input type="submit" value="Delete Squirrel"/>
 </form>
 <br/><br/>
+
 
 
 </body>
