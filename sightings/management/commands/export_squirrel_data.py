@@ -13,7 +13,11 @@ class Command(BaseCommand):
         f = open(csv_file, 'w+')
         writer = csv.writer(f)
         field_names = [f.name for f in Squirrel._meta.fields]
-        writer.writerow(field_names)
+        column_names = ['X','Y','Unique Squirrel ID','Shift','Date','Age',
+        'Primary Fur Color','Location','Specific Location','Running','Chasing',
+        'Climbing','Eating','Foraging', 'Other Activities','Kuks',	'Quaas',
+        'Moans', 'Tail flags',	'Tail twitches', 'Approaches','Indifferent','Runs from']
+        writer.writerow(column_names)
         for obj in Squirrel.objects.all():
             row = [getattr(obj, field) for field in field_names]
             writer.writerow(row)
