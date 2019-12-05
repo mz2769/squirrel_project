@@ -40,10 +40,10 @@ def update(request,unique_squirrel_id):
     return render(request,'sightings/update.html' , context)
 
 def stats(request):
-    ground_plane = Squirrel.objects.filter(location == A).count()
-    gray = Squirrel.objects.filter(primary_fur_color == Gray).count()
-    adult = Squirrel.objects.filter(age == adult).count()
-    eating = Squirrel.objects.filter(eating == T).count()
-    not_foraging = Squirrel.objects.filter(foraging == F).count()
+    ground_plane = Squirrel.objects.filter(location = A).count()
+    gray = Squirrel.objects.filter(primary_fur_color = Gray).count()
+    adult = Squirrel.objects.filter(age = adult).count()
+    eating = Squirrel.objects.filter(eating = T).count()
+    not_foraging = Squirrel.objects.filter(foraging = F).count()
     context= {'ground_plane': ground_plane,'gray': gray,'adult': adult,'eating': eating,'not_foraging': not_foraging}
     return render(request,'sightings/stats.html' , context)
