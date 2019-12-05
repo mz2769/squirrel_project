@@ -41,3 +41,6 @@ def update(request,unique_squirrel_id):
 
 def stats(request):
     squirrels = Squirrel.objects.all()
+    running = squirrels.count(running == True)
+    context= {'running': running}
+    return render(request,'sightings/stats.html' , context)
