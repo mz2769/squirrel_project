@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,shortcuts
 from .forms import SquirrelForm
 from sightings.models import Squirrel
 from django.contrib import messages
@@ -27,20 +27,19 @@ def update(request,unique_squirrel_id):
     obj= get_object_or_404(Squirrel, pk=unique_squirrel_id)
     if request.method == 'POST':
         form = SquirrelForm(request.POST, instance= obj)
-        context= {'form': form}
         if form.is_valid():
-            obj= form.save(commit= False)
-            obj.save()
+            # obj= form.save(commit= False)
+            # obj.save()
+            form.save()
             messages.success(request, "You have successfully updated the squirrel sighting")
-            context= {'form': form}
-            return render(request,'sightings/update.html' , context)
+            return redirect('/sightings/{unique_squirrel_id}')
         else:
             context= {'form': form,
                       'error': 'The form was not updated successfully. Please enter in valid info'}
-            return render(request,'sightings/update.html' , context)
     else:
         form = SquirrelForm(instance= obj)
-        return render(request,'sightings/update.html' , {'form': form})
+        context= {'form': form}
+    return render(request,'sightings/update.html' , context)
 
 def delete(request,unique_squirrel_id):
     obj= get_object_or_404(Squirrel, pk=unique_squirrel_id)
