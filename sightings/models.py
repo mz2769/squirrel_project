@@ -1,25 +1,29 @@
 from django.db import models
-
+from django.utils.translation import gettext as _
 
 class Squirrel(models.Model):
-    longitude = models.FloatField()
-    latitude = models.FloatField()
+    longitude = models.FloatField(help_text=_('Data required'))
+    latitude = models.FloatField(help_text=_('Data required'))
     unique_squirrel_id = models.CharField(
         max_length=200,
         unique=True,
         primary_key=True,
+        help_text=_('Data required'),
     )
 
-    
     Morning = 'AM'
     Afternoon = 'PM'
     OCCUR_TIME_CHOICES = [
         (Morning,'AM'),
         (Afternoon,'PM'),
     ]
-    shift = models.CharField(max_length=2,choices=OCCUR_TIME_CHOICES)
+    shift = models.CharField(
+        max_length=2,
+        choices=OCCUR_TIME_CHOICES,
+        default=Morning,
+    )
 
-    date = models.DateField()
+    date = models.DateField(help_text=_('Data required'))
 
     Adult = 'Adult'
     Juvenile = 'Juvenile'
@@ -65,7 +69,12 @@ class Squirrel(models.Model):
         null=True,
     )
 
-    specific_location = models.CharField(max_length=200,default=None,blank=True,null=True)
+    specific_location = models.CharField(
+        max_length=200,
+        default=None,
+        blank=True,
+        null=True,
+    )
 
     T = 'TRUE'
     F = 'FALSE'
@@ -73,22 +82,73 @@ class Squirrel(models.Model):
         (T,'TRUE'),
         (F,'FALSE'),
     ]
-    running = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    chasing = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    climbing = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    eating = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    foraging = models.CharField(max_length=20,choices=SELECTION_CHOICE)
+    running = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    chasing = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    climbing = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    eating = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    foraging = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
 
     other_activities = models.CharField(max_length=200,default=None,blank=True,null=True)
 
-    kuks = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    quaas = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    moans = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    tail_flags = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    tail_twitches = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    approaches = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    indifferent = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-    runs_from = models.CharField(max_length=20,choices=SELECTION_CHOICE)
-
+    kuks = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    quaas = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    moans = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    tail_flags = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    tail_twitches = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    approaches = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    indifferent = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
+    runs_from = models.CharField(
+        max_length=20,
+        choices=SELECTION_CHOICE,
+        default=F,
+    )
     def __str__(self):
         return self.unique_squirrel_id

@@ -1,33 +1,24 @@
+<!doctype>
 <html>
-<head>
-<title>Squirrel</title>
-</head>
+  <body>
+    <h1>Create Squirrel</h1>
 
-<body>
-<h1>Create Squirrel</h1>
+    <a href="/sightings/"><input type="submit" value="go back to list"/></a>
 
-<a href="/sightings/"><input type="submit" value="go back to list"/></a>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+    <form  method="POST">
+      {% csrf_token %}
 
-{% if error %}
-{{ error }}
-{% endif %}
+      {{ form.as_p }}
+      <a href=""><input type="submit" onclick="return confirm('Are you sure?')" value="Add Squirrel"></a>
+    </form>
 
-<form action="" method="POST">
-{% csrf_token %}
-{{ form.as_p }}
-<a href=""><input type="submit" onclick="return confirm('Are you sure?')" value="Add Squirrel"></a>
-</form>
-<br/><br/>
-
-
-</body>
-
+  </body>
 </html>
