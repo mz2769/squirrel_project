@@ -8,7 +8,7 @@ def list_sq(request):
     return render(request, 'sightings/list_sq.html', {'squirrels': squirrels})
 
 def map(request):
-    sightings = Squirrel.objects.all()
+    sightings = Squirrel.objects.all()[:100]
     return render(request, 'sightings/map.html', {'sightings': sightings})
 
 def create(request):
@@ -40,7 +40,10 @@ def update(request,unique_squirrel_id):
     return render(request,'sightings/update.html' , context)
 
 def stats(request):
-    squirrels = Squirrel.objects.all()
-    running = squirrels.count(running == True)
-    context= {'running': running}
+    running = Squirrel.objects.filter(running == True).count()
+    gray = Squirrel.objects.filter(primary_fur_color == Gray).count()
+    adult = Squirrel.objects.filter(age == adult).count()
+    eating = Squirrel.objects.filter(eating == True).count()
+    not_foraging = Squirrel.objects.filter(foraging == False).count()
+    context= {'running': running,'gray': gray,'adult': adult,'eating': eating,'not_foraging': not_foraging}
     return render(request,'sightings/stats.html' , context)
