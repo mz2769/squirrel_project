@@ -40,7 +40,7 @@ def update(request,unique_squirrel_id):
     return render(request,'sightings/update.html' , context)
 
 def stats(request):
-    ground_plane = Squirrel.objects.filter(location = A).count()
+    ground_plane = Squirrel.objects.filter(location = 'Ground Plane').count()
     gray = Squirrel.objects.filter(primary_fur_color = Gray).count()
     adult = Squirrel.objects.filter(age = adult).count()
     eating = Squirrel.objects.filter(eating = T).count()
