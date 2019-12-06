@@ -9,7 +9,7 @@ def list_sq(request):
 
 def map(request):
     sightings = Squirrel.objects.all()[:100]
-    return render(request, 'sightings'/map.html', {'sightings': sightings})
+    return render(request, 'sightings/map.html', {'sightings': sightings})
 
 def create(request):
     if request.method == 'POST':
