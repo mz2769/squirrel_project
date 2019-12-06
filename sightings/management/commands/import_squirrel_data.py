@@ -5,17 +5,21 @@ import datetime
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('csv_file', nargs='+', type=str)
+        parser.add_argument('csv_file')
 
     def handle(self, *args, **options):
-        for csv_file in options['csv_file']:
-            data = csv.reader(open(csv_file), delimiter=",", quotechar='"')
-            next(data)
+        with open(options['csv_file']) as fp:
+            reader = csv.DictReader(fp)
+            data = list(reader)
+        # for csv_file in options['csv_file']:
+        #     data = csv.reader(open(csv_file), delimiter=",", quotechar='"')
+        #     next(data)
+        #     data1=list(data)
             for row in data:
                 squirrel = Squirrel()
                 try:
-                    squirrel.longitude = row['X']
-                    squirrel.latitude = row["Y"]
+                    squirrel.latitude = row['X']
+                    squirrel.longitude = row["Y"]
                     squirrel.unique_squirrel_id = row['Unique Squirrel ID']
                     squirrel.shift = row['Shift']
                     squirrel.date = datetime.datetime.strptime(row['Date'],'%m%d%Y')
@@ -40,4 +44,3 @@ class Command(BaseCommand):
                 except:
                     pass
                 squirrel.save()
-                # self.stdout.write('successfully import ')
