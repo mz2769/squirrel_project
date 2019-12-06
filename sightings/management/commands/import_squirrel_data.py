@@ -17,7 +17,7 @@ class Command(BaseCommand):
                 squirrel = Squirrel()
                 try:
                     squirrel.longitude = row['X']
-                    squirrel.latitude = row["Y"]
+                    squirrel.latitude = row['Y']
                     squirrel.unique_squirrel_id = row['Unique Squirrel ID']
                     squirrel.shift = row['Shift']
                     squirrel.date = row['Date']
