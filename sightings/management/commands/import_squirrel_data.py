@@ -11,13 +11,13 @@ class Command(BaseCommand):
         with open(options['csv_file']) as fp:
             reader = csv.DictReader(fp)
             data = list(reader)
+
             for row in data:
                 row['Date']=datetime.datetime.strptime(row['Date'],'%m%d%Y')
                 squirrel = Squirrel()
-
                 try:
-                    squirrel.latitude = row['X']
-                    squirrel.longitude = row["Y"]
+                    squirrel.longitude = row['X']
+                    squirrel.latitude = row["Y"]
                     squirrel.unique_squirrel_id = row['Unique Squirrel ID']
                     squirrel.shift = row['Shift']
                     squirrel.date = row['Date']
