@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import csv
 from sightings.models import Squirrel
-
+import datetime
 
 class Command(BaseCommand):
     help = ("Output the specified model as CSV")
@@ -19,6 +19,8 @@ class Command(BaseCommand):
         'Moans', 'Tail flags',	'Tail twitches', 'Approaches','Indifferent','Runs from']
         writer.writerow(column_names)
         for obj in Squirrel.objects.all():
+            obj.date = obj.date.strftime('%m%d%Y')
             row = [getattr(obj, field) for field in field_names]
+            row[4]=obj.date
             writer.writerow(row)
         f.close()
