@@ -107,7 +107,12 @@ class Squirrel(models.Model):
         default=F,
     )
 
-    other_activities = models.CharField(max_length=200,default=None,blank=True,null=True)
+    other_activities = models.CharField(
+        max_length=200,
+        default=None,
+        blank=True,
+        null=True,
+    )
 
     kuks = models.CharField(
         max_length=20,

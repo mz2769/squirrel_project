@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render,get_object_or_404,redirect
 from .forms import SquirrelForm
 from sightings.models import Squirrel
 from django.contrib import messages
@@ -45,5 +45,11 @@ def stats(request):
     adult = Squirrel.objects.filter(age = 'Adult').count()
     eating = Squirrel.objects.filter(eating = 'TRUE').count()
     not_foraging = Squirrel.objects.filter(foraging = 'FALSE').count()
-    context= {'ground_plane': ground_plane,'gray': gray,'adult': adult,'eating': eating,'not_foraging': not_foraging}
+    context= {
+        'ground_plane': ground_plane,
+        'gray': gray,
+        'adult': adult,
+        'eating': eating,
+        'not_foraging': not_foraging
+    }
     return render(request,'sightings/stats.html' , context)
