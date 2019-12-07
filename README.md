@@ -15,3 +15,4 @@ Project Group 6, Section 1
 UNIs: [fx2166, mz2769]
 
 # Link to the server
+https://even-gear-255421.appspot.com
