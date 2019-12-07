@@ -6,7 +6,7 @@ Our application contains:
   2. A view that [lists](http://127.0.0.1:8000/sightings/) squirrel sightings with links to edit each
   3. A view to update a particular sighting
   4. A view to create a new sighting
-  5. A view with general stats about the sightings
+  5. A view with general [stats](http://127.0.0.1:8000/sightings/stats/) about the sightings
 
 # Group name and section
 Project Group 6, Section 1
@@ -15,3 +15,4 @@ Project Group 6, Section 1
 UNIs: [fx2166, mz2769]
 
 # Link to the server
+https://even-gear-255421.appspot.com
