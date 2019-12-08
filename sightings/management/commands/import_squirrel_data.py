@@ -13,8 +13,8 @@ class Command(BaseCommand):
             data = list(reader)
 
             for row in data:
-                row['Date']=datetime.datetime.strptime(row['Date'],'%m%d%Y')
                 squirrel = Squirrel()
+                row['Date']=datetime.datetime.strptime(row['Date'],'%m%d%Y')
                 try:
                     squirrel.latitude = row['Y']
                     squirrel.longitude = row['X']
