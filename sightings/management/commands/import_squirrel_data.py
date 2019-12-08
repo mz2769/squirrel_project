@@ -16,8 +16,8 @@ class Command(BaseCommand):
                 row['Date']=datetime.datetime.strptime(row['Date'],'%m%d%Y')
                 squirrel = Squirrel()
                 try:
-                    squirrel.longitude = row['X']
                     squirrel.latitude = row['Y']
+                    squirrel.longitude = row['X']
                     squirrel.unique_squirrel_id = row['Unique Squirrel ID']
                     squirrel.shift = row['Shift']
                     squirrel.date = row['Date']
