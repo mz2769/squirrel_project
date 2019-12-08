@@ -44,12 +44,12 @@ def stats(request):
     gray = Squirrel.objects.filter(primary_fur_color = 'Gray').count()
     adult = Squirrel.objects.filter(age = 'Adult').count()
     afternoon = Squirrel.objects.filter(shift = 'PM').count()
-    running = Squirrel.objects.filter(running='TRUE').count()
+    date = Squirrel.objects.filter(date='2018-10-10').count()       
     context= {
         'ground_plane': ground_plane,
         'gray': gray,
         'adult': adult,
         'afternoon': afternoon,
-        'running': running
+        'date': date
     }
     return render(request,'sightings/stats.html' , context)
